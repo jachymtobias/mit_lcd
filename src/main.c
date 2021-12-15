@@ -1,6 +1,9 @@
 #include "stm8s.h"
 #include "milis.h"
 
+#include <stdio.h>          //abych mohl použít sprintf
+#include "stm8_hd44780.h"
+
 /*#include "delay.h"*/
 /*#include <stdio.h>*/
 /*#include "../lib/uart.c"*/
@@ -31,8 +34,19 @@ int main(void)
 {
     uint32_t time = 0;
 
+    char text[16];
+    uint8_t cislo = 357;
+
     setup();
     /*init_uart();*/
+
+    lcd_init();
+    lcd_gotoxy(0, 0);
+    lcd_puts("Funguje to");
+
+    sprintf(text, "U = %d", cislo, cislo);
+    lcd_gotoxy(0, 1);
+    lcd_puts(text)
 
     while (1) {
 
